@@ -39,11 +39,15 @@ api_key3= os.getenv("GENAI_API_KEY")
 # except Exception as e:
 #     print (f"An error occurred: {e}") 
 
+try:
+    while True:
+        user_query = input("ask..")
+        llm3 = ChatGoogleGenerativeAI(
+        model="gemini-3.8-flash",
+        api_key=api_key3
+        )
 
-llm3 = ChatGoogleGenerativeAI(
-    model="gemini-3.8-flash",
-    api_key=api_key3
-)
-
-response = llm3.invoke("hello, what`s up?")
-print(response.content)
+        response = llm3.invoke(user_query)
+        print(response.text)
+except Exception as e:
+    print(f"error while generating response : {e}")
