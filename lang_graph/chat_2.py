@@ -3,6 +3,36 @@ from typing import Optional
 from openai import OpenAI
 from langgraph.graph import StateGraph, START, END
 
+
+###
+
+
+monogo db checkpointing
+from langgraph.checkpoint.mongodb import MongoDBServer
+
+def compile_graph_checkpointer():
+    DB_URL:"mongodb://admin:admin/localhost:8080/langgraph"
+    with MongoDBServer.from_conn_string(DB_URL) as checkpointer
+     graph = graph_builder.compile(checkpointer=checkpointer)
+     return graph
+
+graph_with_checkpointer = compile_graph_with_checkpointer()
+
+config = {
+    'configurable':{
+        "thread_id":"jhon"
+    }
+}
+
+for chunk in graph_with_checkpointer.stream(
+    State({"messages": ["my name is jhon cena"]}),
+    config,
+    stream_node="values "
+):
+    chunk["messages"][-1.pretty_print()]
+
+###
+
 class State(TypedDict):
     user_query : str
     llm_output : Optional[str]
