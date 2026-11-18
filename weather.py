@@ -22,9 +22,6 @@ OUTPUT_FORMAT:
 AVAILABLE_TOOLS:
     -get_weather : Takes city name as input and returns the current weather information about the city.
 """
-available_tools = {
-    "weather_tool":get_weather
-}
 
 def get_weather(city:str):
     url=f"https://wttr.in/{city}?format=%C+%t"
@@ -37,6 +34,10 @@ def get_weather(city:str):
         return f"Could not retrieve weather data for {city}. Please try again later."
 
 client = OpenAI(api_key=api_key)
+
+available_tools = {
+    "weather_tool": get_weather
+}
 
 def main():
     user_query = input(">")
