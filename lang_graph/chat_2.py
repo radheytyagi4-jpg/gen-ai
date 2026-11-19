@@ -4,34 +4,33 @@ from openai import OpenAI
 from langgraph.graph import StateGraph, START, END
 
 
-###
 
 
-monogo db checkpointing
-from langgraph.checkpoint.mongodb import MongoDBServer
 
-def compile_graph_checkpointer():
-    DB_URL:"mongodb://admin:admin/localhost:8080/langgraph"
-    with MongoDBServer.from_conn_string(DB_URL) as checkpointer
-     graph = graph_builder.compile(checkpointer=checkpointer)
-     return graph
+# monogo db checkpointing
+# from langgraph.checkpoint.mongodb import MongoDBServer
 
-graph_with_checkpointer = compile_graph_with_checkpointer()
+# def compile_graph_checkpointer():
+#     DB_URL:"mongodb://admin:admin/localhost:8080/langgraph"
+#     with MongoDBServer.from_conn_string(DB_URL) as checkpointer
+#      graph = graph_builder.compile(checkpointer=checkpointer)
+#      return graph
 
-config = {
-    'configurable':{
-        "thread_id":"jhon"
-    }
-}
+# graph_with_checkpointer = compile_graph_with_checkpointer()
 
-for chunk in graph_with_checkpointer.stream(
-    State({"messages": ["my name is jhon cena"]}),
-    config,
-    stream_node="values "
-):
-    chunk["messages"][-1.pretty_print()]
+# config = {
+#     'configurable':{
+#         "thread_id":"jhon"
+#     }
+# }
 
-###
+# for chunk in graph_with_checkpointer.stream(
+#     State({"messages": ["my name is jhon cena"]}),
+#     config,
+#     stream_node="values "
+# ):
+#     chunk["messages"][-1.pretty_print()]
+
 
 class State(TypedDict):
     user_query : str
