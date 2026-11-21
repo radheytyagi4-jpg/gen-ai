@@ -17,6 +17,15 @@ config={
             "api_key":"", "model":"text-embedding-3-small"
         },
         },
+        "graph_store":{
+            "provide":"neo4j",
+            "config":{
+                "url":"",
+                "username":"",
+                "password":""
+
+            }
+        },
         "vector_store":{
             "provider":"qdrant",
             "config":{
